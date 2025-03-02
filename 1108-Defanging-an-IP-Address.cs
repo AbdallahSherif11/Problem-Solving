@@ -17,6 +17,6 @@ public class Solution
         }
         DefangedIP = string.Concat(list.ToArray());
 
-        return DefangedIP;
+        return DefangedIP; 
     }
 }
