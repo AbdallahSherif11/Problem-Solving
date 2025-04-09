@@ -20,11 +20,6 @@ public class Solution
 
             for(int j = 0; j < myList.Count; j++)
             {
-                if (myList[j].Count == 0)
-                {
-                    x = 0;
-                    break;
-                }
                 x = Math.Max(x, myList[j].Max());
                 myList[j].Remove(myList[j].Max());
             }
