@@ -1,0 +1,38 @@
+1public class Solution 
+2{
+3    public int SumOfGoodNumbers(int[] nums, int k) 
+4        {
+5                int Result = 0;
+6
+7                        for(int i = 0; i < nums.Length; i++)
+8                                {
+9                                            if((i - k < 0) && (i + k >= nums.Length))
+10                                                        {
+11                                                                        Result += nums[i];
+12                                                                                    }
+13                                                                                                else if(i - k >= 0 && (i + k >= nums.Length))
+14                                                                                                            {
+15                                                                                                                            if (nums[i] > nums[i-k])
+16                                                                                                                                            {
+17                                                                                                                                                                Result += nums[i];
+18                                                                                                                                                                                }
+19                                                                                                                                                                                            }
+20                                                                                                                                                                                                        else if(i + k < nums.Length && (i - k < 0))
+21                                                                                                                                                                                                                    {
+22                                                                                                                                                                                                                                    if (nums[i] > nums[i + k])
+23                                                                                                                                                                                                                                                    {
+24                                                                                                                                                                                                                                                                        Result += nums[i];
+25                                                                                                                                                                                                                                                                                        }
+26                                                                                                                                                                                                                                                                                                    }
+27                                                                                                                                                                                                                                                                                                                else
+28                                                                                                                                                                                                                                                                                                                            {
+29                                                                                                                                                                                                                                                                                                                                            if (nums[i] > nums[i - k] && nums[i] > nums[i + k])
+30                                                                                                                                                                                                                                                                                                                                                            {
+31                                                                                                                                                                                                                                                                                                                                                                                Result += nums[i];
+32                                                                                                                                                                                                                                                                                                                                                                                                }
+33                                                                                                                                                                                                                                                                                                                                                                                                            }
+34                                                                                                                                                                                                                                                                                                                                                                                                                    }
+35
+36                                                                                                                                                                                                                                                                                                                                                                                                                            return Result;
+37                                                                                                                                                                                                                                                                                                                                                                                                                                }
+38                                                                                                                                                                                                                                                                                                                                                                                                                                }
