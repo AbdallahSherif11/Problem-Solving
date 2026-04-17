@@ -1,0 +1,4 @@
+1/* Write your T-SQL query statement below */
+2select date_id, make_name, Count(distinct(lead_id)) as unique_leads, Count(distinct(partner_id)) as unique_partners
+3from DailySales
+4group by date_id, make_name
