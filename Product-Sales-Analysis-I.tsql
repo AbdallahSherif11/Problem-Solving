@@ -1,0 +1,4 @@
+1/* Write your T-SQL query statement below */
+2select product_name, year, price
+3from Sales inner join Product
+4on Product.product_id = Sales.product_id
