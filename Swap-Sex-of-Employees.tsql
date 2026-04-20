@@ -1,0 +1,7 @@
+1/* Write your T-SQL query statement below */
+2update Salary
+3set sex =
+4	case sex
+5	when 'f' then 'm'
+6	when 'm' then 'f'
+7	end
