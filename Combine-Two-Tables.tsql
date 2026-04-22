@@ -1,0 +1,4 @@
+1/* Write your T-SQL query statement below */
+2select firstName, lastName, city, state
+3from Person left join Address
+4on Person.personId = Address.personId
