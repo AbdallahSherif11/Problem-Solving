@@ -1,0 +1,5 @@
+1/* Write your T-SQL query statement below */
+2select name, bonus
+3from Employee left join Bonus
+4on Bonus.empId = Employee.empId
+5where bonus is null or bonus < 1000
