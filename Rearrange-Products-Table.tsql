@@ -1,0 +1,12 @@
+1/* Write your T-SQL query statement below */
+2select product_id , 'store1' as store, store1 as price
+3from Products
+4where store1 is not null
+5union
+6select product_id , 'store2' as store, store2 as price
+7from Products
+8where store2 is not null
+9union
+10select product_id , 'store3' as store, store3 as price
+11from Products
+12where store3 is not null
