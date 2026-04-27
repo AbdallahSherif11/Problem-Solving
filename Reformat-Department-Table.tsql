@@ -1,0 +1,16 @@
+1/* Write your T-SQL query statement below */
+2select id,
+3sum(iif(month='Jan',revenue,null)) as Jan_Revenue,
+4sum(iif(month='Feb',revenue,null)) as Feb_Revenue,
+5sum(iif(month='Mar',revenue,null)) as Mar_Revenue,
+6sum(iif(month='Apr',revenue,null)) as Apr_Revenue,
+7sum(iif(month='May',revenue,null)) as May_Revenue,
+8sum(iif(month='Jun',revenue,null)) as Jun_Revenue,
+9sum(iif(month='Jul',revenue,null)) as Jul_Revenue,
+10sum(iif(month='Aug',revenue,null)) as Aug_Revenue,
+11sum(iif(month='Sep',revenue,null)) as Sep_Revenue,
+12sum(iif(month='Oct',revenue,null)) as Oct_Revenue,
+13sum(iif(month='Nov',revenue,null)) as Nov_Revenue,
+14sum(iif(month='Dec',revenue,null)) as Dec_Revenue
+15from Department
+16group by id
