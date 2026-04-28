@@ -1,0 +1,4 @@
+1/* Write your T-SQL query statement below */
+2select * from cinema
+3where (id % 2 = 1) and (description != 'boring')
+4order by rating desc
