@@ -1,0 +1,4 @@
+1/* Write your T-SQL query statement below */
+2select player_id, event_date as first_login from
+3(select player_id, event_date, Row_Number() over(PARTITION BY player_id order by event_date asc) as Rn from Activity) as tempTable
+4where Rn = 1
