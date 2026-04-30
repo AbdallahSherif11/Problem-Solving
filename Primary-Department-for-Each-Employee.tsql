@@ -1,0 +1,9 @@
+1/* Write your T-SQL query statement below */
+2select employee_id, department_id
+3from Employee
+4where primary_flag = 'Y' 
+5or employee_id in (
+6select employee_id
+7from Employee
+8group by employee_id
+9having COUNT(employee_id) = 1)
