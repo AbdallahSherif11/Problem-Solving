@@ -1,0 +1,4 @@
+1/* Write your T-SQL query statement below */
+2select email as Email from Person
+3group by email
+4having Count(email) > 1
