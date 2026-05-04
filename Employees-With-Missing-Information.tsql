@@ -1,0 +1,10 @@
+1/* Write your T-SQL query statement below */
+2select Employees.employee_id as employee_id from 
+3Employees full outer join Salaries
+4on Employees.employee_id = Salaries.employee_id
+5where (name is null or salary is null) and Employees.employee_id is not null
+6union
+7select Salaries.employee_id as employee_id from 
+8Employees full outer join Salaries
+9on Employees.employee_id = Salaries.employee_id
+10where (name is null or salary is null) and Salaries.employee_id is not null
