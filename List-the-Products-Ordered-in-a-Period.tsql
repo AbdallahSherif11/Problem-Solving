@@ -1,0 +1,7 @@
+1/* Write your T-SQL query statement below */
+2select product_name, sum(unit) as unit
+3from Products inner join Orders
+4on Products.product_id = Orders.product_id
+5where MONTH(order_date) = 2  and year(order_date) = 2020
+6group by products.product_id, product_name
+7having sum(unit) >= 100
