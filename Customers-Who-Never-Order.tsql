@@ -1,0 +1,6 @@
+1/* Write your T-SQL query statement below */
+2select Customers.name as Customers  from 
+3Customers left join Orders
+4on Customers.id = Orders.customerId
+5group by Customers.name , customers.id
+6having Count(customerid) = 0
