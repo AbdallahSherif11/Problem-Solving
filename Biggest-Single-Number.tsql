@@ -1,0 +1,10 @@
+1/* Write your T-SQL query statement below */
+2declare @x int
+3set @x = 
+4(select top(1) Max(num) as num
+5from MyNumbers
+6group by num
+7having Count(num) = 1
+8order by num desc)
+9
+10select @x as num
