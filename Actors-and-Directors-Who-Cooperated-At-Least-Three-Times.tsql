@@ -1,0 +1,4 @@
+1/* Write your T-SQL query statement below */
+2select actor_id, director_id from ActorDirector
+3group by actor_id, director_id
+4having Count(actor_id) >= 3
