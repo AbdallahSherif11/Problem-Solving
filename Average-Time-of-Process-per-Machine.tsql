@@ -1,0 +1,6 @@
+1/* Write your T-SQL query statement below */
+2select X.machine_id, CAST(((sum(Y.timestamp)-sum(x.timestamp)) / COUNT(X.process_id)) AS DECIMAL(10,3)) as processing_time
+3from Activity X
+4inner join Activity Y
+5on X.machine_id = Y.machine_id and X.process_id = Y.process_id and X.activity_type = 'start' and Y.activity_type = 'end'
+6group by X.machine_id
