@@ -1,0 +1,5 @@
+1/* Write your T-SQL query statement below */
+2select project_id, cast(avg(CAST(experience_years as decimal(10,2))) as decimal(10,2)) as average_years from
+3Employee inner join Project
+4on Project.employee_id = Employee.employee_id
+5group by project_id
