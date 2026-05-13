@@ -1,0 +1,11 @@
+1/* Write your T-SQL query statement below */
+2delete from Person 
+3where id not in 
+4	(
+5		select minid from 
+6		(
+7			select Min(id) as minid, Email from Person
+8				group by Email
+9				having Count(Email) >= 1
+10		) as temp1
+11	)
