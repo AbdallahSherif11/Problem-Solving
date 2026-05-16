@@ -1,0 +1,9 @@
+1/* Write your T-SQL query statement below */
+2select top(1) customer_number from orders
+3group by customer_number
+4having Count(order_number) >= 
+5(
+6	select top(1) Count(customer_number) as MaxCount from orders
+7	group by customer_number
+8	order by MaxCount desc
+9)
