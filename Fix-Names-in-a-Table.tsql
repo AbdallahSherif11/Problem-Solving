@@ -1,0 +1,4 @@
+1/* Write your T-SQL query statement below */
+2SELECT user_id, UPPER(LEFT(Name, 1)) + LOWER(SUBSTRING(Name, 2, LEN(Name))) AS name
+3FROM Users
+4order by user_id
