@@ -1,0 +1,6 @@
+1/* Write your T-SQL query statement below */
+2declare @x decimal 
+3set @x = (select COUNT(user_id) from Users)
+4select contest_id, cast((Count(contest_id) / @x * 100) as decimal(10,2)) as percentage from Register
+5group by contest_id
+6order by percentage desc, contest_id asc
