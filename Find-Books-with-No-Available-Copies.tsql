@@ -1,0 +1,8 @@
+1/* Write your T-SQL query statement below */
+2select L.book_id , title, author, genre, publication_year, Count(L.book_id) as current_borrowers
+3from library_books as L inner join borrowing_records as B
+4on L.book_id = B.book_id
+5and B.return_date is null
+6group by L.book_id , title, author, genre, publication_year, total_copies
+7having Count(L.book_id) - total_copies = 0
+8order by current_borrowers desc, L.title asc
