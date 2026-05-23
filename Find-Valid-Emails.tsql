@@ -1,0 +1,25 @@
+1/* Write your T-SQL query statement below */
+2SELECT user_id, email 
+3FROM Users
+4WHERE 
+5    -- Exactly one @
+6    LEN(email) - LEN(REPLACE(email, '@', '')) = 1
+7
+8    -- Ends with .com
+9    AND email LIKE '%.com'
+10
+11    -- Local part: only alphanumeric and underscores
+12    AND PATINDEX('%[^a-zA-Z0-9_]%', LEFT(email, CHARINDEX('@', email) - 1)) = 0
+13
+14    -- Domain part: only letters, and must not be empty
+15    AND LEN(SUBSTRING(
+16        email, 
+17        CHARINDEX('@', email) + 1, 
+18        CHARINDEX('.com', email) - CHARINDEX('@', email) - 1
+19    )) > 0
+20    AND PATINDEX('%[^a-zA-Z]%', SUBSTRING(
+21        email, 
+22        CHARINDEX('@', email) + 1, 
+23        CHARINDEX('.com', email) - CHARINDEX('@', email) - 1
+24    )) = 0
+25order by user_id asc
