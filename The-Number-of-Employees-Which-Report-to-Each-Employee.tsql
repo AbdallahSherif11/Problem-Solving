@@ -1,0 +1,6 @@
+1/* Write your T-SQL query statement below */
+2select manager.employee_id, manager.name, COUNT(staff.employee_id) as reports_count, ROUND(AVG(cast(staff.age as decimal(10,2))) , 0) as average_age
+3from Employees as staff inner join Employees as manager
+4on staff.reports_to = manager.employee_id
+5group by manager.employee_id,manager.name
+6order by manager.employee_id
