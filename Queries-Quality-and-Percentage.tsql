@@ -1,0 +1,19 @@
+1/* Write your T-SQL query statement below */
+2select 
+3	query_name,
+4	cast((Sum(rating * 1.0 /position) / Count(query_name)) as decimal(10,2)) as quality,
+5	cast
+6	(
+7		Sum
+8		(
+9			case
+10				when rating < 3 then 1
+11				else 0
+12			end
+13		) * 100.0 / Count(query_name) 
+14		
+15		as decimal(10, 2)
+16	) 
+17	as poor_query_percentage
+18from Queries
+19group by query_name
