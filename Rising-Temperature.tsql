@@ -1,0 +1,5 @@
+1/* Write your T-SQL query statement below */
+2select weatherToday.id
+3from Weather as weatherToday
+4inner join Weather as weatherYesterday 
+5    ON DATEDIFF(day, weatherYesterday.recordDate, weatherToday.recordDate) = 1 and weatherToday.temperature > weatherYesterday.temperature;
