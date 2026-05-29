@@ -1,0 +1,4 @@
+1/* Write your T-SQL query statement below */
+2select patient_id, patient_name, conditions 
+3from Patients
+4where conditions like 'DIAB1%' or conditions like '% DIAB1%'
