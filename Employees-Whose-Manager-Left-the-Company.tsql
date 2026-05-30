@@ -1,0 +1,10 @@
+1/* Write your T-SQL query statement below */
+2select employee_id from Employees
+3where (salary < 30000)
+4	and (manager_id is not null) 
+5	and (manager_id not in 
+6			(
+7				select employee_id from Employees
+8			) 
+9		)
+10order by employee_id
