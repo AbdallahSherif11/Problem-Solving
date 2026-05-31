@@ -1,0 +1,8 @@
+1/* Write your T-SQL query statement below */
+2select distinct P.product_id, product_name
+3from Product as P inner join Sales as S
+4	on P.product_id = S.product_id
+5where P.product_id not in (
+6	select product_id from Sales
+7	where sale_date < '2019-01-01' or sale_date > '2019-03-31'
+8)
