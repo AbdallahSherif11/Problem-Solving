@@ -1,0 +1,8 @@
+1/* Write your T-SQL query statement below */
+2select * from products
+3where description COLLATE Latin1_General_CS_AS LIKE '%SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]%'
+4and description NOT LIKE '%-[0-9][0-9][0-9][0-9][0-9]%'
+5and description NOT LIKE '%[0-9][0-9][0-9][0-9][0-9]-%'
+6and description COLLATE Latin1_General_CS_AS NOT LIKE '%[A-Za-z]SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]%'
+7and description COLLATE Latin1_General_CS_AS NOT LIKE '%[0-9]SN[0-9][0-9][0-9][0-9]-[0-9][0-9][0-9][0-9]%'
+8order by product_id asc
