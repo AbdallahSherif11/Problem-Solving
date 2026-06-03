@@ -1,0 +1,5 @@
+1/* Write your T-SQL query statement below */
+2select user_id, count(prompt) as prompt_count, cast(AVG(isnull(cast(tokens as decimal(10,2)),0)) as decimal(10,2)) as avg_tokens from prompts 
+3group by user_id
+4having count(prompt) >= 3 and max(tokens) > avg(tokens)
+5order by avg_tokens desc, user_id asc
