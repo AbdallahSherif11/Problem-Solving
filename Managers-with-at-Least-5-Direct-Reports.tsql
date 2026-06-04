@@ -1,0 +1,8 @@
+1/* Write your T-SQL query statement below */
+2select Manager.name from
+3Employee as Person
+4inner join
+5Employee as Manager
+6on Person.managerId = Manager.id
+7group by Person.managerId, Manager.name
+8having count(Person.managerId) >= 5
