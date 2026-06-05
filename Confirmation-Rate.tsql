@@ -1,0 +1,17 @@
+1/* Write your T-SQL query statement below */
+2select T1.user_id, cast((isnull(confirmed_count,0) * 1.0 / iif(total_count = 0,1,total_count)) as decimal(10,2)) as confirmation_rate
+3from
+4	(select Su.user_id, Count(CO.user_id) as total_count from
+5	Signups as SU left join Confirmations as CO
+6	on SU.user_id = Co.user_id
+7	group by Su.user_id) as T1
+8
+9	left join
+10
+11	(select Su.user_id, Count(CO.user_id) as confirmed_count from
+12	Signups as SU left join Confirmations as CO
+13	on SU.user_id = Co.user_id
+14	where Co.action = 'confirmed'
+15	group by Su.user_id)  T2
+16
+17	on T1.user_id = T2.user_id
