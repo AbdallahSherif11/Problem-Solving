@@ -1,0 +1,12 @@
+1/* Write your T-SQL query statement below */
+2declare @x int = (select Count(product_key) from Product)
+3select customer_id from(
+4
+5	select customer_id, C.product_key, iif(Count(P.product_key) > 1,1,Count(P.product_key) )as BoughtCount from Customer as C
+6	inner join Product as P
+7	on C.product_key = P.product_key
+8	group by customer_id, C.product_key
+9
+10) as temptable
+11group by customer_id
+12having Sum(temptable.BoughtCount) >= @x
