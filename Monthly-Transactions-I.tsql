@@ -1,0 +1,17 @@
+1/* Write your T-SQL query statement below */
+2select Temp2.month, Temp2.country,
+3	isnull(trans_count,0) as trans_count,
+4	isnull(approved_count,0) as approved_count,
+5	isnull(trans_total_amount,0) as trans_total_amount,
+6	isnull(approved_total_amount ,0) as approved_total_amount
+7from
+8(select month, country, Count(id) as trans_count, Sum(isnull(amount,0)) as trans_total_amount from
+9	(select * , FORMAT(trans_date, 'yyyy-MM') as month from Transactions) as Temp1
+10	group by Temp1.country, Temp1.month) as temp2
+11left join
+12(select month, country, Count(id) as approved_count , Sum(isnull(amount,0)) as approved_total_amount  from
+13	(select * , FORMAT(trans_date, 'yyyy-MM') as month from Transactions) as Temp1
+14	where state = 'approved'
+15	group by Temp1.country, Temp1.month) as temp3
+16
+17on Temp2.month = temp3.month and isnull(temp2.country,'Test') = isnull(temp3.country, 'Test')
