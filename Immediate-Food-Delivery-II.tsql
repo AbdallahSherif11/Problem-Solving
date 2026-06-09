@@ -1,0 +1,15 @@
+1/* Write your T-SQL query statement below */
+2declare @x int =
+3(select count(delivery_id) from
+4(SELECT *, 
+5    Row_Number() OVER (
+6        PARTITION BY customer_id
+7        ORDER BY order_date ASC
+8		) AS RN
+9FROM Delivery) as temp1
+10where RN = 1
+11and order_date = customer_pref_delivery_date)
+12
+13declare @y int = (select Count(distinct customer_id) from Delivery)
+14
+15select cast((@x * 100.0/@y) as decimal(10,2)) as immediate_percentage
