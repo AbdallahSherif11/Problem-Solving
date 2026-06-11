@@ -1,0 +1,9 @@
+1/* Write your T-SQL query statement below */
+2select COALESCE
+3	(
+4		(select top(1)salary as SecondHighestSalary from
+5			(select *, DENSE_RANK() over (PARTITION by temp_col order by salary desc) as RN	from
+6				(select '1' as temp_col, id, salary
+7				from Employee) as temp_table) as temp_table_2
+8				where RN = 2)
+9	, null) as SecondHighestSalary
