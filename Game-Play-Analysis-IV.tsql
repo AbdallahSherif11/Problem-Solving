@@ -1,0 +1,13 @@
+1/* Write your T-SQL query statement below */
+2declare @y int = 
+3(
+4	select Count(player_id) from
+5		(select *,
+6				ROW_NUMBER() over (partition by player_id order by event_date asc)	as RN,
+7				Lag (event_date) over ( partition by player_id order by event_date asc) as FirstDate
+8		from Activity) as TempTable1
+9	where RN in (1, 2) and DATEDIFF(day ,FirstDate , event_date) = 1
+10)
+11
+12declare @x int = (select count(distinct player_id) from Activity)
+13select cast(@y * 1.0 / @x as decimal(10,2))   as fraction
