@@ -1,0 +1,9 @@
+1/* Write your T-SQL query statement below */
+2select distinct num as ConsecutiveNums  from
+3(
+4	select * ,
+5		lag(num) over(order by id) as PreviousNum,
+6		Lead(num) over(order by id) as FollowingNum
+7	from Logs
+8) as Temp_1
+9where num = PreviousNum and PreviousNum = FollowingNum
