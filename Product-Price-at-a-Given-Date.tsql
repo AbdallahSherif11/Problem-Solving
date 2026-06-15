@@ -1,0 +1,12 @@
+1/* Write your T-SQL query statement below */
+2select product_id, iif(CareDate is null, 10, new_price) as price from
+3(
+4	select *,
+5		ROW_NUMBER() over(partition by product_id order by CareDate desc) as Rn
+6		from
+7	(
+8		select product_id , new_price , iif(change_date <= '2019-08-16', change_date,null) as CareDate
+9			from Products
+10	) as Temp_1
+11) as Temp_2
+12where Rn = 1
