@@ -1,0 +1,7 @@
+1/* Write your T-SQL query statement below */
+2select top(1) person_name  from
+3(
+4	select * , (sum(weight) over(order by turn)) as SumCurrent from queue
+5) as temp_1
+6where SumCurrent <= 1000
+7order by SumCurrent desc
