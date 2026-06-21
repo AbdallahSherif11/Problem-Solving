@@ -1,0 +1,8 @@
+1/* Write your T-SQL query statement below */
+2select id, iif(id % 2 = 0,previousName,NextName) as student from 
+3(
+4	select *, 
+5			lag(student) over(order by id) as previousName,
+6			isnull(lead(student) over(order by id), student) as NextName
+7	from Seat
+8) as temp_1
