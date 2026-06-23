@@ -1,0 +1,19 @@
+1/* Write your T-SQL query statement below */
+2select name as results from
+3(
+4	select top(1) U.user_id, U.name, Count(MR.user_id) as Movies_rated
+5	from Users as U inner join MovieRating as MR
+6	on U.user_id = MR.user_id
+7	group by U.user_id, U.name
+8	order by Movies_rated desc, U.name asc
+9) as temp_1
+10union all
+11select title as result from
+12(
+13	select top(1) M.movie_id, M.title, AVG(MR.rating * 1.0) as avgRating
+14		from Movies as M inner join MovieRating as MR
+15		on M.movie_id = MR.movie_id
+16		where MR.created_at >= '2020-02-01' and MR.created_at < '2020-03-01'
+17		group by M.movie_id, M.title
+18		order by avgRating desc, M.title 
+19) as temp_2
