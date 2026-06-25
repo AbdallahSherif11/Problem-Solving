@@ -1,0 +1,26 @@
+1/* Write your T-SQL query statement below */
+2WITH Temp_1 (requester_id,  timesAsRequester)
+3as (
+4		select requester_id, count(requester_id) 
+5		from RequestAccepted 
+6		group by requester_id	
+7    ),
+8Temp_2 (accepter_id,  timesAsAccepter)
+9as (
+10		select accepter_id, count(accepter_id) as timesAsAccepter
+11		from RequestAccepted
+12		group by accepter_id
+13    )
+14
+15select id, num from
+16(
+17	select 
+18		id,
+19		TotalAccepted as num,
+20		Max(TotalAccepted) over() as MaxNumberAccpted
+21	from
+22		(select isnull(requester_id, accepter_id) as id, (isnull(timesAsRequester,0) + isnull(timesAsAccepter,0)) TotalAccepted
+23			from Temp_1 full join
+24			Temp_2 on requester_id = accepter_id) as Temp_3
+25) as Temp_4
+26where num = MaxNumberAccpted
