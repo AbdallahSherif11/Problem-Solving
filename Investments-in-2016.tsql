@@ -1,0 +1,19 @@
+1/* Write your T-SQL query statement below */
+2WITH LatLonDecider as
+3(
+4	select count(pid) as sameLatLonCount , lat,lon from Insurance
+5	group by lat,lon
+6	having count(pid) = 1
+7),
+8SameTivDecider as
+9(
+10	select count(pid) as sameTiv_2015 , tiv_2015 from Insurance
+11	group by tiv_2015
+12	having count(pid) > 1
+13)
+14
+15select cast(sum(tiv_2016) as decimal(10,2)) as tiv_2016 from Insurance as I
+16inner join LatLonDecider as LLD
+17on I.lat = LLD.lat and I.lon = LLD.lon
+18inner join SameTivDecider as STD
+19on I.tiv_2015 = STD.tiv_2015
