@@ -1,0 +1,12 @@
+1/* Write your T-SQL query statement below */
+2SELECT user_id, name, mail
+3FROM Users
+4WHERE mail LIKE '[a-zA-Z]%@leetcode.com'
+5  AND mail NOT LIKE '%[^a-zA-Z0-9_.-]%@leetcode.com'
+6  AND mail COLLATE Latin1_General_CS_AS <> 'winston@leetcode.COM'
+7  AND mail COLLATE Latin1_General_CS_AS <> 'winston@LEETCODE.com'
+8  AND mail COLLATE Latin1_General_CS_AS <> 'winston@leetcode.COM'
+9  
+10  ;
+11
+12
