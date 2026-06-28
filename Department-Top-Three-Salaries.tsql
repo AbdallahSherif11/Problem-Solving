@@ -1,0 +1,11 @@
+1/* Write your T-SQL query statement below */
+2
+3select Department, Employee, salary from
+4(
+5	select D.name as Department, E.name as Employee, salary, DENSE_RANK() over(partition by departmentId order by salary desc) as DR from
+6		Employee as E
+7		inner join 
+8		Department as D
+9		on E.departmentId = D.id
+10) as temp_1
+11where DR <= 3
