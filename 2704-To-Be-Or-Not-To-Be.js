@@ -5,7 +5,7 @@
 var expect = function(val1) {
     return {
          toBe: function(val2) {
-            if(val1 == val2){
+            if(val1 === val2){
                 return true;
             }
             else{
@@ -13,7 +13,7 @@ var expect = function(val1) {
             }
         },
         notToBe: function(val3) {
-            if(val1 != val3){
+            if(val1 !== val3){
                 return true;
             }
             else{
